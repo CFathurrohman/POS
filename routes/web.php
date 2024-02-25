@@ -12,12 +12,13 @@ Route::get('/', function () {
 
 Route::get('/home', [HomeController::class, 'home']);
 
-Route::get('/category', [ProductController::class, 'product']);
-Route::get('/category/food-beverage', [ProductController::class, 'foodBeverage']);
-Route::get('/category/beauty-health', [ProductController::class, 'beautyHealth']);
-Route::get('/category/home-care', [ProductController::class, 'homeCare']);
-Route::get('/category/baby-kid', [ProductController::class, 'babyKid']);
-
+Route::prefix('category')->group(function () {
+    Route::get('/', [ProductController::class, 'product']);
+    Route::get('/food-beverage', [ProductController::class, 'foodBeverage']);
+    Route::get('/beauty-health', [ProductController::class, 'beautyHealth']);
+    Route::get('/home-care', [ProductController::class, 'homeCare']);
+    Route::get('/baby-kid', [ProductController::class, 'babyKid']);
+});
 
 Route::get('/user/{id}/name/{name}', [UserController::class, 'user']);
 
